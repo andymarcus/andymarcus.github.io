@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Protocol:RUN</title>
+<meta name="description" content="Privacy policy for the Protocol:RUN Android game.">
+<meta name="robots" content="index, follow">
+<style>
+  /* Palette lifted from the game's own Cfg colour constants, so this page and
+     Protocol:RUN are demonstrably the same product. Deliberately dark-only: it is
+     brand-matched rather than theme-aware. */
+  :root {
+    color-scheme: dark;
+    --bg: #05050B;
+    --panel: #0B0D18;
+    --panel-2: #101426;
+    --rule: #1C2438;
+    --text: #E0F2FF;
+    --dim: #758CAD;
+    --cyan: #33F2FF;
+    --magenta: #FF2E9E;
+    --amber: #FFB329;
+    --lime: #94FF47;
+    --violet: #9452FF;
+    --mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, "Roboto Mono",
+            "DejaVu Sans Mono", monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    /* A faint scanline wash, the same trick the game's post-process does. */
+    background-image:
+      radial-gradient(1200px 600px at 50% -10%, rgba(51,242,255,.07), transparent 70%),
+      repeating-linear-gradient(180deg, rgba(255,255,255,.014) 0 1px, transparent 1px 3px);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 860px; margin: 0 auto; padding: 40px 20px 96px; }
+
+  /* ---------------------------------------------------------------- head -- */
+  header { border-bottom: 2px solid var(--cyan); padding-bottom: 22px; margin-bottom: 34px; }
+
+  .eyebrow {
+    font-size: 11px; letter-spacing: .24em; text-transform: uppercase;
+    color: var(--cyan); margin: 0 0 12px; font-weight: 700;
+  }
+  .eyebrow .sep { color: var(--dim); margin: 0 8px; }
+
+  h1 {
+    font-size: clamp(1.7rem, 5.5vw, 2.6rem);
+    line-height: 1.08; letter-spacing: -.02em; font-weight: 700;
+    margin: 0 0 14px; text-wrap: balance;
+  }
+  h1 .glow { color: var(--cyan); text-shadow: 0 0 24px rgba(51,242,255,.5); }
+
+  .meta { font-size: 12.5px; color: var(--dim); margin: 0; }
+  .meta strong { color: var(--text); font-weight: 600; }
+
+  /* --------------------------------------------------------------- panels -- */
+  /* Clipped top-left and bottom-right only, matching UiTheme.chamfer_box. */
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px),
+                       calc(100% - 14px) 100%, 0 100%, 0 14px);
+    padding: 22px 24px;
+    margin: 26px 0;
+  }
+  .panel.tldr { border-color: rgba(148,255,71,.45); background: rgba(148,255,71,.05); }
+  .panel.tldr h2 { color: var(--lime); border: 0; margin-top: 0; padding: 0; }
+  .panel.warn { border-color: rgba(255,179,41,.5); background: rgba(255,179,41,.05); }
+  .panel.warn h2 { color: var(--amber); border: 0; margin-top: 0; padding: 0; }
+
+  /* --------------------------------------------------------------- typo --- */
+  h2 {
+    font-size: 1.06rem; letter-spacing: .02em; font-weight: 700;
+    margin: 46px 0 14px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+    display: flex; gap: 12px; align-items: baseline; text-wrap: balance;
+  }
+  h2 .num { color: var(--magenta); font-size: .8em; flex: none; font-variant-numeric: tabular-nums; }
+
+  h3 { font-size: .95rem; font-weight: 700; color: var(--amber); margin: 26px 0 8px; }
+
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 16px; padding-left: 1.4em; }
+  li { margin-bottom: 8px; }
+  li::marker { color: var(--cyan); }
+
+  strong { color: #fff; font-weight: 700; }
+  em { color: var(--amber); font-style: normal; }
+
+  a { color: var(--cyan); text-decoration: underline;
+      text-decoration-color: rgba(51,242,255,.4); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--cyan); }
+  a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+  code {
+    font-family: var(--mono); font-size: .88em;
+    background: var(--panel-2); border: 1px solid var(--rule);
+    padding: .1em .4em; color: var(--lime); word-break: break-word;
+  }
+
+  .fill { color: var(--magenta); font-weight: 700; }
+
+  /* -------------------------------------------------------------- tables -- */
+  .tw { overflow-x: auto; margin: 20px 0 26px; border: 1px solid var(--rule); }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; min-width: 480px; }
+  thead th {
+    text-align: left; background: var(--panel-2); color: var(--cyan);
+    font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase;
+    padding: 11px 14px; border-bottom: 1px solid var(--rule); white-space: nowrap;
+  }
+  tbody td { padding: 11px 14px; border-bottom: 1px solid rgba(28,36,56,.6);
+             vertical-align: top; color: var(--dim); }
+  tbody td:first-child { color: var(--text); font-weight: 600; white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: 0; }
+  .yes { color: var(--lime); font-weight: 700; }
+  .no  { color: var(--dim); font-weight: 700; }
+
+  /* -------------------------------------------------------------- footer -- */
+  footer {
+    margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--rule);
+    font-size: 12px; color: var(--dim);
+  }
+  footer .tag { color: var(--magenta); letter-spacing: .18em; text-transform: uppercase; font-size: 10.5px; }
+
+  @media print {
+    body { background: #fff; color: #000; background-image: none; }
+    .panel, .tw { border-color: #999; }
+    a { color: #000; }
+    h1 .glow, h2 .num, thead th { color: #000; text-shadow: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Protocol<span class="sep">//</span>RUN</p>
+  <h1>Privacy <span class="glow">Policy</span></h1>
+  <p class="meta">
+    Effective <strong>21 August 2026</strong> &nbsp;·&nbsp; Last updated <strong>21 August 2026</strong><br>
+    Applies to the <strong>Protocol:RUN</strong> Android application (<code>com.protocolrun.game</code>)
+  </p>
+</header>
+
+<div class="panel tldr">
+  <h2>The short version</h2>
+  <p>
+    Protocol:RUN has no accounts, no logins and no servers of its own. Your progress
+    is saved only on your device and is never uploaded. I run no analytics and I
+    collect nothing about you.
+  </p>
+  <p>
+    The one exception is advertising. The game shows ads through
+    <strong>Google AdMob</strong>, and AdMob collects device and advertising
+    identifiers to serve and measure them. If you buy the Supporter unlock, Google
+    Play handles the payment and I never see your payment details.
+  </p>
+  <p style="margin-bottom:0">
+    Everything below is the long version of those three paragraphs.
+  </p>
+</div>
+
+<h2><span class="num">01</span><span>Who this is</span></h2>
+<p>
+  Protocol:RUN is developed and published by <strong>Andy Marcus</strong>
+  ("I", "me", "the developer"), an independent developer. For the purposes of the UK
+  GDPR and EU GDPR, I am the data controller for the limited processing described in
+  this policy.
+</p>
+<p>
+  Contact: <a href="mailto:protocolrun@andymarcus.com">protocolrun@andymarcus.com</a>
+</p>
+
+<h2><span class="num">02</span><span>What I collect myself</span></h2>
+<p>
+  <strong>Nothing.</strong> That is not a simplification. Protocol:RUN has no user
+  accounts, no sign-in, no leaderboard server, no crash reporting and no analytics
+  of any kind. There is no back end for the game to send anything to.
+</p>
+<p>
+  Your saved game — best scores, distances, credits, upgrades, cosmetics, contract
+  progress, daily streaks, settings and ghost replays — is written to a single file
+  in the app's private storage on your device (<code>protocol_run.save</code>). It
+  never leaves the device, it is not backed up to me, and I have no way to read it.
+  Uninstalling the game deletes it.
+</p>
+
+<h2><span class="num">03</span><span>What third parties collect</span></h2>
+<p>
+  The game includes Google's advertising and billing components. These are operated
+  by Google, not by me, and they process data under Google's own policies.
+</p>
+
+<h3>Google AdMob — advertising</h3>
+<p>
+  Protocol:RUN shows two kinds of ad: a <em>rewarded</em> ad you may choose to watch
+  in exchange for continuing a run, and an occasional full-screen ad between runs.
+  To serve and measure these, the Google Mobile Ads SDK may collect and process:
+</p>
+<ul>
+  <li>your device's <strong>advertising identifier</strong> (Android Advertising ID);</li>
+  <li>device and app information — model, operating system version, app version, language, network type;</li>
+  <li><strong>approximate location inferred from your IP address</strong> (country/region level; the game requests no GPS or location permission);</li>
+  <li>interactions with ads — whether an ad was shown, viewed, completed or clicked.</li>
+</ul>
+<p>
+  This is used to select ads, limit how often you see the same one, measure
+  performance, and detect invalid or fraudulent traffic. Read
+  <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Google's Privacy Policy</a>
+  and
+  <a href="https://support.google.com/admob/answer/6128543" rel="noopener" target="_blank">how Google uses data from apps that use its services</a>.
+</p>
+
+<h3>Google Play Billing — purchases</h3>
+<p>
+  The game offers one optional purchase, the <strong>Supporter unlock</strong>, which
+  removes the between-runs ads. Payment is handled entirely by Google Play. I receive
+  only confirmation that a purchase for my product identifier succeeded. I never
+  receive or store your name, card number, billing address or any other payment
+  detail.
+</p>
+
+<h3>Google Play Services</h3>
+<p>
+  The game is distributed through Google Play and relies on Google Play Services on
+  your device. Google may process data in connection with app distribution, updates
+  and integrity checks independently of this policy.
+</p>
+
+<h2><span class="num">04</span><span>Data safety summary</span></h2>
+<p>This mirrors the Data Safety declaration on the app's Google Play listing.</p>
+<div class="tw">
+<table>
+  <thead>
+    <tr><th>Data type</th><th>Collected</th><th>Shared</th><th>Purpose</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Advertising ID</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Advertising, frequency capping, fraud prevention</td></tr>
+    <tr><td>Device &amp; app info</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Ad serving and measurement</td></tr>
+    <tr><td>Approximate location (from IP)</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Regional ad targeting and legal compliance</td></tr>
+    <tr><td>Purchase history</td><td class="yes">Yes</td><td class="no">No</td><td>Delivering the Supporter unlock; held by Google Play</td></tr>
+    <tr><td>Name, email, phone, address</td><td class="no">No</td><td class="no">No</td><td>—</td></tr>
+    <tr><td>Precise location</td><td class="no">No</td><td class="no">No</td><td>—</td></tr>
+    <tr><td>Contacts, photos, files, messages</td><td class="no">No</td><td class="no">No</td><td>—</td></tr>
+    <tr><td>Game progress &amp; settings</td><td class="no">No</td><td class="no">No</td><td>Stored only on your device</td></tr>
+    <tr><td>Analytics / usage telemetry</td><td class="no">No</td><td class="no">No</td><td>None is collected</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">05</span><span>Permissions, and why each exists</span></h2>
+<div class="tw">
+<table>
+  <thead><tr><th>Permission</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>INTERNET</td><td>Requesting ads. The game itself needs no connection and is fully playable offline.</td></tr>
+    <tr><td>ACCESS_NETWORK_STATE</td><td>Checking whether a connection exists before requesting an ad.</td></tr>
+    <tr><td>AD_ID</td><td>Reading the advertising identifier, required by the ads SDK on Android 13 and above.</td></tr>
+    <tr><td>VIBRATE</td><td>Haptic feedback on near misses and impacts. Can be turned off in Settings.</td></tr>
+    <tr><td>WAKE_LOCK</td><td>Keeping the screen awake during a run.</td></tr>
+    <tr><td>ACCESS_ADSERVICES_*</td><td>Added by Google's ads SDK for Android's Privacy Sandbox advertising APIs.</td></tr>
+    <tr><td>READ_BASIC_PHONE_STATE, FOREGROUND_SERVICE</td><td>Added by Google Play Services components; not used by the game directly.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">06</span><span>Your choices</span></h2>
+<h3>Consent, in the EEA, UK and Switzerland</h3>
+<p>
+  Before any personalised ad is requested, the game shows a Google-certified consent
+  message using Google's User Messaging Platform. You may refuse personalised ads;
+  the game remains fully playable, and you will see non-personalised ads instead.
+</p>
+<h3>On your device, anywhere</h3>
+<ul>
+  <li><strong>Opt out of ad personalisation:</strong> Android <em>Settings → Google → All services → Ads</em>, then "Delete advertising ID" or "Opt out of Ads Personalisation".</li>
+  <li><strong>Reset your advertising ID</strong> in the same place, which disconnects future ad data from past ad data.</li>
+  <li><strong>Remove the between-runs ads</strong> by buying the Supporter unlock. Rewarded ads remain available because they are always your choice to start.</li>
+  <li><strong>Delete everything</strong> by uninstalling the game, which removes the local save file.</li>
+</ul>
+
+<h2><span class="num">07</span><span>Legal bases for processing</span></h2>
+<p>Where the UK or EU GDPR applies:</p>
+<ul>
+  <li><strong>Consent</strong> (Art. 6(1)(a)) — personalised advertising, and any use of the advertising identifier for it.</li>
+  <li><strong>Contract</strong> (Art. 6(1)(b)) — delivering a purchase you have made.</li>
+  <li><strong>Legitimate interests</strong> (Art. 6(1)(f)) — serving non-personalised ads, capping how often ads appear, and preventing ad fraud.</li>
+</ul>
+
+<h2><span class="num">08</span><span>Retention and international transfers</span></h2>
+<p>
+  I hold no personal data, so I have nothing to retain or delete on request. Data
+  processed by Google is retained under Google's own schedules, described in its
+  privacy policy.
+</p>
+<p>
+  Google operates globally and may process data outside your country, including in
+  the United States, relying on transfer mechanisms such as the EU Standard
+  Contractual Clauses.
+</p>
+
+<h2><span class="num">09</span><span>Your rights</span></h2>
+<p>
+  Depending on where you live, you may have rights to access, correct, delete or port
+  your personal data, to object to or restrict processing, and to withdraw consent.
+  Because the data described here is held by Google rather than by me, requests are
+  usually best made to Google directly — but write to me and I will help you route
+  them.
+</p>
+<p>
+  If you are in the EEA or UK you may also complain to your national data protection
+  authority. In the UK that is the
+  <a href="https://ico.org.uk/" rel="noopener" target="_blank">Information Commissioner's Office</a>.
+</p>
+<p>
+  If you are a California resident: I do not sell or share personal information as
+  those terms are defined by the CCPA/CPRA. Ad personalisation may qualify as
+  "sharing" for cross-context behavioural advertising, which you can turn off using
+  the device controls in section 06.
+</p>
+
+<h2><span class="num">10</span><span>Children</span></h2>
+<p>
+  Protocol:RUN is rated for players aged <strong>13 and over</strong> and is not
+  directed to children. It is not enrolled in Google Play's Designed for Families
+  programme. I do not knowingly collect personal information from children. If you
+  believe a child has provided information through this app, contact me and I will
+  act on it.
+</p>
+
+<h2><span class="num">11</span><span>Changes</span></h2>
+<p>
+  If this policy changes, the date at the top of the page changes with it. Material
+  changes — a new third party, or a new category of data — will be noted in the app's
+  release notes as well. Continuing to use the game after a change means you accept
+  the updated policy.
+</p>
+
+<h2><span class="num">12</span><span>Contact</span></h2>
+<p>
+  Questions, requests or corrections:
+  <a href="mailto:protocolrun@andymarcus.com">protocolrun@andymarcus.com</a>
+</p>
+
+<div class="panel warn">
+  <h2>Before you publish</h2>
+  <p>
+    Make sure <code>protocolrun@andymarcus.com</code> is actually receiving mail
+    before this goes live. A policy with a dead contact address is worse than no
+    policy, and it is the one claim on this page a regulator can check in seconds.
+  </p>
+  <p style="margin-bottom:0">
+    This was drafted from what the app's source code actually does rather than from a
+    template, and it is accurate as of the version above — but it is not legal advice.
+    If you expect meaningful EEA or UK traffic, have somebody qualified read it. Then
+    delete this box.
+  </p>
+</div>
+
+<footer>
+  <p class="tag">Protocol:RUN // Privacy</p>
+  <p style="margin:0">
+    This page describes only the Protocol:RUN Android application. It carries no
+    trackers, no cookies and no analytics of its own.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
