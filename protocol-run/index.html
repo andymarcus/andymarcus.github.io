@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Protocol:RUN — Run the walls. Grind the rails. Outrun the drones.</title>
+<meta name="description" content="Protocol:RUN is a 3D cyberpunk endless runner for Android. Five worlds, 180 contracts, daily seeds and a ghost of your own best line. Free on Google Play.">
+<meta name="theme-color" content="#05050B">
+<link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Protocol:RUN">
+<meta property="og:description" content="Run the walls. Grind the rails. Chase your best in a neon cyberpunk runner.">
+<meta property="og:image" content="https://andymarcus.com/protocol-run/img/og-image.png">
+<meta property="og:url" content="https://andymarcus.com/protocol-run/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fonts/chakra_petch_bold.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="fonts/jetbrains_mono.ttf" as="font" type="font/ttf" crossorigin>
+<style>
+  @font-face { font-family: "Chakra Petch"; src: url("fonts/chakra_petch_bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+  @font-face { font-family: "JetBrains Mono"; src: url("fonts/jetbrains_mono.ttf") format("truetype"); font-weight: 400 700; font-display: swap; }
+  @font-face { font-family: "Barlow"; src: url("fonts/barlow_regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Barlow"; src: url("fonts/barlow_semibold.ttf") format("truetype"); font-weight: 600; font-display: swap; }
+
+  :root {
+    color-scheme: dark;
+    --bg: #05050B;
+    --panel: #0B0D18;
+    --panel-2: #101426;
+    --rule: #1C2438;
+    --text: #E0F2FF;
+    --dim: #8EA3C4;
+    --cyan: #33F2FF;
+    --magenta: #FF2E9E;
+    --amber: #FFB329;
+    --violet: #9452FF;
+    --mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+    --sans: "Barlow", "Helvetica Neue", Arial, sans-serif;
+    --display: "Chakra Petch", "JetBrains Mono", monospace;
+    --max: 1120px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: var(--sans); font-size: 17px; line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      linear-gradient(rgba(51,242,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(51,242,255,.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--cyan); }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .24em;
+    text-transform: uppercase; color: var(--cyan); font-weight: 700; margin: 0 0 14px;
+  }
+  .eyebrow .sep { color: var(--dim); margin: 0 8px; }
+  h2 {
+    font-family: var(--display); font-size: clamp(1.7rem, 4vw, 2.6rem);
+    line-height: 1.1; letter-spacing: .01em; margin: 0 0 16px; text-transform: uppercase;
+  }
+  h2 .glow { color: var(--cyan); text-shadow: 0 0 24px rgba(51,242,255,.45); }
+  .lede { color: var(--dim); font-size: 1.1rem; max-width: 620px; margin: 0; }
+
+  /* ---------------------------------------------------------------- CTA -- */
+  .cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--cyan); color: #04141A; text-decoration: none;
+    font-family: var(--mono); font-weight: 700; font-size: 15px; letter-spacing: .06em;
+    text-transform: uppercase; padding: 16px 26px; border-radius: 6px; white-space: nowrap;
+    box-shadow: 0 0 0 1px rgba(51,242,255,.6), 0 0 32px rgba(51,242,255,.35);
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .cta:hover, .cta:focus-visible { transform: translateY(-2px); background: #6BF7FF; box-shadow: 0 0 0 1px rgba(51,242,255,.9), 0 0 48px rgba(51,242,255,.55); outline: none; }
+  .cta svg { width: 22px; height: 22px; flex: none; }
+  .cta small { display: block; font-size: 10px; letter-spacing: .2em; opacity: .75; font-weight: 400; }
+  .cta.ghost {
+    background: transparent; color: var(--text);
+    box-shadow: 0 0 0 1px var(--rule);
+  }
+  .cta.ghost:hover, .cta.ghost:focus-visible { background: var(--panel-2); box-shadow: 0 0 0 1px var(--cyan); }
+
+  /* ---------------------------------------------------------------- nav -- */
+  .nav { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); background: rgba(5,5,11,.72); border-bottom: 1px solid var(--rule); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; }
+  .wordmark { font-family: var(--display); font-size: 20px; letter-spacing: .04em; color: var(--cyan); }
+  .wordmark b { color: var(--magenta); font-weight: 700; }
+  .nav .cta { padding: 10px 16px; font-size: 13px; }
+  .nav .cta small { display: none; }
+  .nav .cta svg { width: 18px; height: 18px; }
+  .nav .cta span.long { display: inline; }
+  @media (max-width: 560px) { .nav .cta span.long { display: none; } .wordmark { font-size: 17px; } .brand img { width: 30px; height: 30px; } }
+
+  /* --------------------------------------------------------------- hero -- */
+  .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--rule); }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; filter: saturate(1.15); }
+  .hero-bg::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, rgba(5,5,11,.96) 0%, rgba(5,5,11,.82) 40%, rgba(5,5,11,.35) 75%, rgba(5,5,11,.55) 100%),
+      linear-gradient(180deg, rgba(5,5,11,.2) 0%, rgba(5,5,11,0) 40%, rgba(5,5,11,.95) 100%);
+  }
+  .hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: end; padding-top: 88px; padding-bottom: 72px; min-height: 78vh; }
+  .hero h1 {
+    font-family: var(--display); font-size: clamp(2.6rem, 7vw, 5.4rem); line-height: .98;
+    letter-spacing: .01em; margin: 0 0 22px; text-transform: uppercase; color: var(--cyan);
+    text-shadow: 0 0 40px rgba(51,242,255,.35);
+  }
+  .hero h1 b { color: var(--magenta); font-weight: 700; text-shadow: 0 0 40px rgba(255,46,158,.4); }
+  .tagline { font-family: var(--mono); font-size: clamp(1.05rem, 2.2vw, 1.5rem); color: var(--text); margin: 0 0 20px; }
+  .hero .lede { margin-bottom: 34px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .stats { display: flex; flex-wrap: wrap; gap: 0 28px; margin: 40px 0 0; padding: 18px 0 0; border-top: 2px solid var(--magenta); font-family: var(--mono); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--dim); }
+  .stats b { color: var(--text); font-weight: 700; }
+  .hero-shot { justify-self: end; width: min(100%, 300px); position: relative; }
+  .hero-shot img { border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.65), 0 0 0 1px rgba(51,242,255,.25), 0 0 60px rgba(51,242,255,.15); }
+  .hero-shot::before { content: ""; position: absolute; inset: -12% -30% auto -30%; height: 60%; background: radial-gradient(ellipse at center, rgba(148,82,255,.3), transparent 70%); z-index: -1; filter: blur(20px); }
+  @media (max-width: 860px) {
+    .hero .wrap { grid-template-columns: 1fr; min-height: 0; padding-top: 64px; padding-bottom: 56px; }
+    .hero-shot { justify-self: center; width: min(70%, 260px); order: -1; }
+    .hero-bg img { object-position: 50% 50%; }
+  }
+
+  /* -------------------------------------------------------------- shots -- */
+  section { padding: 88px 0; scroll-margin-top: 64px; }
+  section + section { border-top: 1px solid var(--rule); }
+  .shots-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 36px; }
+  .shots { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr); gap: 20px; overflow-x: auto; padding: 8px 4px 24px; scroll-snap-type: x mandatory; scrollbar-color: var(--rule) transparent; }
+  .shot { scroll-snap-align: start; background: var(--panel); border: 1px solid var(--rule); border-radius: 14px; padding: 12px; transition: transform .2s ease, border-color .2s ease; }
+  .shot:hover { transform: translateY(-4px); border-color: rgba(51,242,255,.5); }
+  .shot img { border-radius: 8px; aspect-ratio: 9 / 16; object-fit: cover; width: 100%; }
+  .shot h3 { font-family: var(--mono); font-size: 14px; letter-spacing: .12em; text-transform: uppercase; margin: 14px 0 4px; color: var(--text); }
+  .shot p { margin: 0; font-size: 14px; color: var(--dim); }
+  .shot .k { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: var(--magenta); margin-bottom: 8px; }
+
+  /* ----------------------------------------------------------- features -- */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
+  .feat { background: var(--panel); border: 1px solid var(--rule); border-radius: 14px; padding: 26px 24px; position: relative; overflow: hidden; }
+  .feat::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent, var(--cyan)); }
+  .feat .n { font-family: var(--mono); font-size: 12px; letter-spacing: .2em; color: var(--accent, var(--cyan)); margin-bottom: 10px; }
+  .feat h3 { font-family: var(--display); font-size: 1.2rem; text-transform: uppercase; letter-spacing: .02em; margin: 0 0 10px; }
+  .feat p { margin: 0; color: var(--dim); font-size: 15.5px; }
+  @media (max-width: 900px) { .features { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .features { grid-template-columns: 1fr; } }
+
+  /* ------------------------------------------------------------- worlds -- */
+  .worlds-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  .worlds { list-style: none; margin: 36px 0 0; padding: 0; counter-reset: w; }
+  .worlds li { display: grid; grid-template-columns: 56px 1fr; gap: 16px; padding: 18px 0; border-top: 1px solid var(--rule); }
+  .worlds li:last-child { border-bottom: 1px solid var(--rule); }
+  .worlds .num { font-family: var(--mono); font-size: 22px; color: var(--w, var(--cyan)); font-weight: 700; }
+  .worlds h3 { margin: 0 0 4px; font-family: var(--display); font-size: 1.15rem; text-transform: uppercase; letter-spacing: .03em; }
+  .worlds p { margin: 0; color: var(--dim); font-size: 15px; }
+  .worlds-shot img { border-radius: 18px; box-shadow: 0 30px 70px rgba(0,0,0,.6), 0 0 0 1px var(--rule); }
+  @media (max-width: 860px) { .worlds-grid { grid-template-columns: 1fr; } .worlds-shot { max-width: 320px; margin: 0 auto; } }
+
+  /* -------------------------------------------------------------- final -- */
+  .final { text-align: center; position: relative; overflow: hidden; }
+  .final::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 100%, rgba(51,242,255,.14), transparent 60%), radial-gradient(ellipse at 20% 0%, rgba(255,46,158,.12), transparent 50%); pointer-events: none; }
+  .final .wrap { position: relative; }
+  .final img.icon { width: 96px; height: 96px; border-radius: 24px; margin: 0 auto 24px; box-shadow: 0 0 0 1px rgba(51,242,255,.4), 0 20px 50px rgba(0,0,0,.6); }
+  .final .lede { margin: 0 auto 32px; }
+  .fine { font-family: var(--mono); font-size: 12px; color: var(--dim); letter-spacing: .08em; margin: 20px 0 0; }
+
+  footer { border-top: 1px solid var(--rule); padding: 32px 0 48px; font-family: var(--mono); font-size: 12.5px; color: var(--dim); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+  footer a { color: var(--dim); text-decoration: none; }
+  footer a:hover { color: var(--cyan); }
+  footer .links a { margin-left: 20px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .shot, .cta { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Protocol:RUN home">
+      <img src="img/icon-192.png" width="36" height="36" alt="">
+      <span class="wordmark">PROTOCOL<b>:</b>RUN</span>
+    </a>
+    <a class="cta" href="https://play.google.com/store/apps/details?id=com.protocolrun.game" rel="noopener" target="_blank">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 3.5v17l14-8.5z"/></svg>
+      <span><span class="long">Download on </span>Play Store</span>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-bg"><img src="img/hero.webp" srcset="img/hero-960.webp 960w, img/hero.webp 1920w" sizes="100vw" alt="" fetchpriority="high"></div>
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Free on Android <span class="sep">·</span> Portrait <span class="sep">·</span> Plays offline</p>
+        <h1 id="hero-title">Protocol<b>:</b>RUN</h1>
+        <p class="tagline">Run the walls. Grind the rails. Outrun the drones.</p>
+        <p class="lede">A 3D endless runner set in a rain-slick cyberpunk city, where the fastest line is a rail, a wall or a rooftop. One clean landing. One higher multiplier. One more run.</p>
+        <div class="hero-actions">
+          <a class="cta" href="https://play.google.com/store/apps/details?id=com.protocolrun.game" rel="noopener" target="_blank">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 3.5v17l14-8.5z"/></svg>
+            <span><small>Free</small>Download on Play Store</span>
+          </a>
+          <a class="cta ghost" href="#shots">See it run</a>
+        </div>
+        <p class="stats"><span><b>5</b> worlds</span><span><b>180</b> contracts</span><span><b>Daily</b> seeds</span><span><b>Offline</b> play</span></p>
+      </div>
+      <div class="hero-shot">
+        <img src="img/hero-key-art.webp" width="720" height="1280" alt="Protocol:RUN key art: the runner sprinting down a rain-soaked neon street beneath the city and its drones." fetchpriority="high">
+      </div>
+    </div>
+  </section>
+
+  <section id="shots" aria-labelledby="shots-title">
+    <div class="wrap">
+      <div class="shots-head">
+        <div>
+          <p class="eyebrow">In-game captures <span class="sep">·</span> Nothing staged</p>
+          <h2 id="shots-title">Every frame is <span class="glow">the real game</span></h2>
+        </div>
+      </div>
+      <div class="shots">
+        <figure class="shot" style="margin:0">
+          <img loading="lazy" src="img/shots/01-neon-grid.webp" width="720" height="1280" alt="Sprinting down a neon grid street between traffic and rails.">
+          <figcaption><span class="k">01 // Neon Grid</span><h3>Run the whole city</h3><p>Rails, walls, rooftops, tunnels.</p></figcaption>
+        </figure>
+        <figure class="shot" style="margin:0">
+          <img loading="lazy" src="img/shots/02-the-walls.webp" width="720" height="1280" alt="Wall run along a lit building face.">
+          <figcaption><span class="k">02 // Traversal</span><h3>Run the walls</h3><p>No floor left? Take the wall.</p></figcaption>
+        </figure>
+        <figure class="shot" style="margin:0">
+          <img loading="lazy" src="img/shots/03-the-hunter.webp" width="720" height="1280" alt="A hunter drone locked onto the runner from above.">
+          <figcaption><span class="k">03 // Hazard</span><h3>Outrun the hunter</h3><p>It finds you at 900 metres.</p></figcaption>
+        </figure>
+        <figure class="shot" style="margin:0">
+          <img loading="lazy" src="img/shots/04-the-ghost.webp" width="720" height="1280" alt="Racing a translucent ghost of a previous best run.">
+          <figcaption><span class="k">04 // Contracts</span><h3>Race your own ghost</h3><p>On any of 180 fixed-seed contracts.</p></figcaption>
+        </figure>
+        <figure class="shot" style="margin:0">
+          <img loading="lazy" src="img/shots/05-tideworks.webp" width="720" height="1280" alt="Tideworks: cranes and containers in salt fog.">
+          <figcaption><span class="k">05 // World three</span><h3>Tideworks</h3><p>Cranes, containers, salt fog.</p></figcaption>
+        </figure>
+        <figure class="shot" style="margin:0">
+          <img loading="lazy" src="img/shots/06-the-crucible.webp" width="720" height="1280" alt="The Crucible: molten floors glowing under moving cranes.">
+          <figcaption><span class="k">06 // World four</span><h3>The Crucible</h3><p>Molten floors and moving cranes.</p></figcaption>
+        </figure>
+        <figure class="shot" style="margin:0">
+          <img loading="lazy" src="img/shots/07-the-null.webp" width="720" height="1280" alt="The Null: abstract geometry where the city breaks down.">
+          <figcaption><span class="k">07 // World five</span><h3>The Null</h3><p>Where the city stops making sense.</p></figcaption>
+        </figure>
+        <figure class="shot" style="margin:0">
+          <img loading="lazy" src="img/shots/08-daily.webp" width="720" height="1280" alt="The Daily screen showing today's seed and streak.">
+          <figcaption><span class="k">08 // Daily</span><h3>A new run every day</h3><p>One seed a day, the same for all.</p></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="feat-title">
+    <div class="wrap">
+      <p class="eyebrow">Why it sticks</p>
+      <h2 id="feat-title">The street is <span class="glow">just the start</span></h2>
+      <p class="lede">Simple swipe controls, routes that reward timing, nerve and practice, and a pace that never stops climbing.</p>
+      <div class="features">
+        <article class="feat" style="--accent: var(--cyan)">
+          <div class="n">01</div>
+          <h3>Take your run off the road</h3>
+          <p>Dodge through traffic, grind the kerbs, then push outward onto the walls. Rails build style, but stay too long and the pylons close in. Keep switching your line to keep the run alive.</p>
+        </article>
+        <article class="feat" style="--accent: var(--magenta)">
+          <div class="n">02</div>
+          <h3>Five worlds to earn</h3>
+          <p>Start on the Neon Grid and unlock The Stack, Tideworks, The Crucible and The Null. Each world has its own routes, atmosphere and signature hazards. Earned with stars, never bought.</p>
+        </article>
+        <article class="feat" style="--accent: var(--amber)">
+          <div class="n">03</div>
+          <h3>180 contracts, three stars each</h3>
+          <p>Finite runs on fixed seeds that you can learn and master. Finish the route, beat its score target, chase a clean clear. Nine hundred metres of subway and nine hundred of rooftop are two different levels.</p>
+        </article>
+        <article class="feat" style="--accent: var(--violet)">
+          <div class="n">04</div>
+          <h3>Your toughest rival is you</h3>
+          <p>Replay Daily runs and Contracts against a ghost of your own best line. See where you gained ground, where you lost it, and where your next record is coming from.</p>
+        </article>
+        <article class="feat" style="--accent: var(--cyan)">
+          <div class="n">05</div>
+          <h3>A fresh reason to run</h3>
+          <p>A new Daily seed in every world, the same for everyone until UTC midnight. Build a streak. Take on the five-challenge Weekly Circuit and stamp your way to the Relay colourway, finish and trail.</p>
+        </article>
+        <article class="feat" style="--accent: var(--magenta)">
+          <div class="n">06</div>
+          <h3>Build your style</h3>
+          <p>Collect credits, upgrade power-up duration and payouts, and customise your runner with colourways, suit finishes and trails. Shield up, pull in credits with the Data Magnet, or smash through with Overclock.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="worlds-title">
+    <div class="wrap worlds-grid">
+      <div>
+        <p class="eyebrow">Five worlds <span class="sep">·</span> One control grammar</p>
+        <h2 id="worlds-title">Discover how far <span class="glow">the city goes</span></h2>
+        <p class="lede">A run never crosses out of the world it started in. Each one is a self-contained game with its own Endless, Daily, Contracts and Goals.</p>
+        <ol class="worlds">
+          <li style="--w: var(--cyan)"><span class="num">01</span><div><h3>Neon Grid</h3><p>Rain-slick streets, laser gates and the kerb rails where the style multiplier starts to climb.</p></div></li>
+          <li style="--w: var(--violet)"><span class="num">02</span><div><h3>The Stack</h3><p>Ninety floors, inside and out. Up the tower, across the rooftops, down the shaft.</p></div></li>
+          <li style="--w: #47D9FF"><span class="num">03</span><div><h3>Tideworks</h3><p>Cranes, containers and salt fog on the docks.</p></div></li>
+          <li style="--w: var(--amber)"><span class="num">04</span><div><h3>The Crucible</h3><p>Molten floors and moving cranes. Every landing has to be clean.</p></div></li>
+          <li style="--w: var(--magenta)"><span class="num">05</span><div><h3>The Null</h3><p>Where the city stops making sense.</p></div></li>
+        </ol>
+      </div>
+      <div class="worlds-shot">
+        <img src="img/shots/09-the-stack.webp" width="720" height="1280" alt="The Stack: running along the outside of a tower, ninety floors up, with the city far below.">
+      </div>
+    </div>
+  </section>
+
+  <section class="final" aria-labelledby="final-title">
+    <div class="wrap">
+      <img class="icon" src="img/icon-256.webp" width="96" height="96" alt="Protocol:RUN app icon">
+      <p class="eyebrow">The next gap is coming</p>
+      <h2 id="final-title">Find <span class="glow">your line</span></h2>
+      <p class="lede">Free to play. Plays offline. Built for one hand and a portrait screen.</p>
+      <a class="cta" href="https://play.google.com/store/apps/details?id=com.protocolrun.game" rel="noopener" target="_blank">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 3.5v17l14-8.5z"/></svg>
+        <span><small>Free</small>Download on Play Store</span>
+      </a>
+      <p class="fine">Android 7.0+ · Interstitial ads, removable with Supporter · Rewarded ads stay optional</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Protocol:RUN // com.protocolrun.game</span>
+    <span class="links">
+      <a href="privacy-policy.html">Privacy policy</a>
+      <a href="https://play.google.com/store/apps/details?id=com.protocolrun.game" rel="noopener" target="_blank">Google Play</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>
