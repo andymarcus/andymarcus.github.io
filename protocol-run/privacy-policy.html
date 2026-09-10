@@ -149,7 +149,7 @@
   <p class="eyebrow">Protocol<span class="sep">//</span>RUN</p>
   <h1>Privacy <span class="glow">Policy</span></h1>
   <p class="meta">
-    Effective <strong>21 August 2026</strong> &nbsp;·&nbsp; Last updated <strong>1 September 2026</strong><br>
+    Effective <strong>21 August 2026</strong> &nbsp;·&nbsp; Last updated <strong>10 September 2026</strong><br>
     Applies to the <strong>Protocol:RUN</strong> Android application (<code>com.protocolrun.game</code>)
   </p>
 </header>
@@ -157,17 +157,19 @@
 <div class="panel tldr">
   <h2>The short version</h2>
   <p>
-    Protocol:RUN has no accounts, no logins and no servers of its own. Your saved
-    game stays on your device and is never uploaded. Nothing here identifies you by
-    name, because the game never asks for one.
+    Protocol:RUN uses Google Play Games for sign-in, achievements and online
+    Endless rankings. When connected, the game receives your Play Games player ID
+    and gamer name, and sends achievement progress and scores to Google. Your full
+    save file stays on your device; cloud saves are not enabled. I do not operate
+    a separate account or game server.
   </p>
   <p>
     Google's advertising and analytics components do collect data. The game shows ads through
     <strong>Google AdMob</strong>, which uses device and advertising identifiers to
-    serve and measure them; and it sends anonymous gameplay measurements to
+    serve and measure them; and it sends gameplay measurements under an app instance ID to
     <strong>Google Firebase Analytics</strong> — how far runs go, which ads are
     offered and declined, what gets bought — so I can tell whether the game is any
-    good and whether the ads are too intrusive. There is no crash reporting.
+    good and whether the ads are too intrusive. No separate crash-reporting service is installed; Google Play Games collects SDK diagnostics.
   </p>
   <p>
     If you buy the Supporter unlock, Google Play handles the payment and I never see
@@ -191,11 +193,10 @@
 
 <h2><span class="num">02</span><span>What I run myself</span></h2>
 <p>
-  <strong>No servers.</strong> Protocol:RUN has no user accounts, no sign-in, no
-  leaderboard server and no back end of mine for anything to be sent to. There is no
-  crash reporting. What I do have is a Google Firebase project, and the game sends
-  anonymous gameplay measurements to it — described in section 03, and new in the
-  1 September 2026 revision of this page.
+  I do not operate a separate account, leaderboard or game server. Google hosts
+  Play Games sign-in, achievements and leaderboards. I also use a Firebase project
+  for gameplay analytics, described in section 03. No separate crash-reporting
+  service is installed; Google Play Games collects SDK diagnostics.
 </p>
 <p>
   Your saved game — best scores, distances, credits, upgrades, cosmetics, contract
@@ -208,16 +209,24 @@
   One distinction is worth stating plainly rather than leaving to be inferred: the
   save <em>file</em> stays on your phone, but some of the numbers in it — how far a
   run went, what it earned, what you spent credits on — are also sent as separate
-  analytics events. Those events carry no name, no email and no account, because
-  there is none to carry.
+  analytics events. The game does not add your Play Games player ID, gamer name or
+  email to those Firebase events. Separately, it sends achievement progress and
+  Endless leaderboard scores to Google Play Games when connected.
+</p>
+<p>
+  The local save also stores your Play Games player ID, achievement progress and
+  pending score submissions so progress can be kept with the correct account and
+  retried after an interrupted connection. Pending progress may be sent when you
+  connect again.
 </p>
 
 <h2><span class="num">03</span><span>What third parties collect</span></h2>
 <p>
-  The game includes Google's advertising, analytics and billing components. These are
-  operated by Google, not by me, and they process data under Google's own policies.
-  The analytics results are reported back to me, in aggregate; the rest I never see
-  except as the summary reports AdMob and Google Play produce for any developer.
+  The game includes Google's advertising, analytics, billing and Play Games
+  components. Google operates these services under its own policies. I receive
+  analytics reports through Firebase. The game also receives player identities,
+  achievement progress and leaderboard results from Play Games to display them
+  and keep progress in sync.
 </p>
 
 <h3>Google AdMob — advertising</h3>
@@ -300,6 +309,37 @@
   detail.
 </p>
 
+<h3>Google Play Games Services — achievements and rankings</h3>
+<p>
+  Play Games connects using your Google gaming profile and may sign you in
+  automatically according to your Google settings. The game receives your
+  <strong>Play Games player ID and gamer name</strong>, reads your achievement
+  status, and sends achievement unlocks, progress counts and Endless scores to
+  Google. This data is associated with your Play Games profile. It is used to
+  award achievements, keep online records and show rankings.
+</p>
+<p>
+  Online rankings display gamer names, scores and ranks. Other players can see
+  your game data according to your Play Games profile visibility settings. The
+  game reads player IDs and gamer names from leaderboard results to display the
+  board and identify your own entry. It does not request your Google email address,
+  contacts or friends list. Google may display your avatar in its own profile and
+  achievement screens.
+</p>
+<p>
+  Google also collects Play Games SDK analytics and diagnostics to maintain and
+  improve the service. This is separate from the game's Firebase gameplay
+  analytics and its ad consent controls. Play Games encrypts transmitted data
+  using HTTPS. See
+  <a href="https://developer.android.com/games/pgs/data-collection" rel="noopener" target="_blank">Google's Play Games data disclosure</a>
+  and <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Google's Privacy Policy</a>.
+</p>
+<p>
+  The game remains playable without a Play Games connection. Online rankings and
+  syncing require a connection. The full save file, credits, upgrades, cosmetics
+  and ghost replays are not uploaded as a cloud save.
+</p>
+
 <h3>Google Play Services</h3>
 <p>
   The game is distributed through Google Play and relies on Google Play Services on
@@ -308,7 +348,7 @@
 </p>
 
 <h2><span class="num">04</span><span>Data safety summary</span></h2>
-<p>This mirrors the Data Safety declaration on the app's Google Play listing.</p>
+<p>This summarizes the game's data use, including Play Games features introduced in version 1.5.0.</p>
 <div class="tw">
 <table>
   <thead>
@@ -321,19 +361,20 @@
     <tr><td>Approximate location (from IP)</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Regional ad targeting, analytics, legal compliance</td></tr>
     <tr><td>Gameplay events — runs, distance, ads offered and declined, in-game spending</td><td class="yes">Yes</td><td class="no">No</td><td>Measuring how the game is played and how intrusive its ads are</td></tr>
     <tr><td>Purchase history</td><td class="yes">Yes</td><td class="no">No</td><td>Delivering the Supporter unlock; held by Google Play</td></tr>
-    <tr><td>Crash logs &amp; diagnostics</td><td class="no">No</td><td class="no">No</td><td>No crash reporting is installed</td></tr>
-    <tr><td>Name, email, phone, address</td><td class="no">No</td><td class="no">No</td><td>—</td></tr>
+    <tr><td>Play Games player ID and gamer name</td><td class="yes">Yes</td><td>Google; gamer name visible according to profile settings</td><td>Sign-in, account-specific progress and rankings</td></tr>
+    <tr><td>Achievements and leaderboard scores</td><td class="yes">Yes</td><td>Google; other players according to profile settings</td><td>Achievements and online rankings</td></tr>
+    <tr><td>Play Games SDK analytics &amp; diagnostics</td><td class="yes">Yes</td><td>Processed by Google</td><td>SDK stability and service improvements; no separate crash-reporting service installed</td></tr>
+    <tr><td>Email, phone, address</td><td class="no">No</td><td class="no">No</td><td>—</td></tr>
     <tr><td>Precise location</td><td class="no">No</td><td class="no">No</td><td>—</td></tr>
     <tr><td>Contacts, photos, files, messages</td><td class="no">No</td><td class="no">No</td><td>—</td></tr>
-    <tr><td>Your save file</td><td class="no">No</td><td class="no">No</td><td>Never leaves your device — but see the gameplay events row above, and section 02</td></tr>
+    <tr><td>Your save file</td><td class="no">No</td><td class="no">No</td><td>Not uploaded as a cloud save; analytics, achievement progress and scores are sent separately (section 02)</td></tr>
   </tbody>
 </table>
 </div>
 <p>
-  Google Play's own form groups these into broader categories than this table does, so
-  the listing reads "Device or other IDs — collected and shared". That is the
-  advertising ID row above doing it: the app instance ID goes only to Google as my
-  service provider, and is not shared onward.
+  Google Play's Data safety form uses broader categories and specific definitions
+  of collection and sharing. The descriptions above explain what each service
+  receives and what other players may see.
 </p>
 
 <h2><span class="num">05</span><span>Permissions, and why each exists</span></h2>
@@ -341,7 +382,7 @@
 <table>
   <thead><tr><th>Permission</th><th>Why</th></tr></thead>
   <tbody>
-    <tr><td>INTERNET</td><td>Requesting ads and sending analytics events. The game itself needs no connection and is fully playable offline.</td></tr>
+    <tr><td>INTERNET</td><td>Requesting ads, sending analytics events, connecting to Play Games, syncing achievements and scores, and loading rankings. Gameplay remains available offline.</td></tr>
     <tr><td>ACCESS_NETWORK_STATE</td><td>Checking whether a connection exists before requesting an ad.</td></tr>
     <tr><td>AD_ID</td><td>Reading the advertising identifier, required by the ads SDK on Android 13 and above. Declared twice, in Google's namespace and Android's.</td></tr>
     <tr><td>VIBRATE</td><td>Haptic feedback on near misses and impacts. Can be turned off in Settings.</td></tr>
@@ -385,7 +426,9 @@
   <li><strong>Reset your advertising ID</strong> in the same place, which disconnects future ad data from past ad data.</li>
   <li><strong>Reset the analytics app instance ID</strong> by clearing the app's data (Android <em>Settings → Apps → Protocol:RUN → Storage → Clear data</em>), which also clears your saved game. A new identifier is generated and nothing links it to the old one.</li>
   <li><strong>Remove banners and between-runs ads</strong> by buying the Supporter unlock. Rewarded ads remain available because they are always your choice to start.</li>
-  <li><strong>Delete everything</strong> by uninstalling the game, which removes the local save file.</li>
+  <li><strong>Delete local game data</strong> by clearing the app's storage or uninstalling. This does not delete achievements or scores already held by Google Play Games.</li>
+  <li><strong>Manage Play Games</strong> through Google's Play Games settings, including the account used for this game, automatic sign-in and profile visibility. Ad Privacy Choices does not control Play Games.</li>
+  <li><strong>Delete Play Games data</strong> using <a href="https://support.google.com/googleplay/answer/9130646" rel="noopener" target="_blank">Google's instructions for deleting data for an individual game or your Play Games profile</a>. Local progress is separate and may be submitted again if you reconnect; clear local game data as well if you want to remove both copies. Clearing local data also removes your other saved progress.</li>
 </ul>
 <p>
   Being straight about the gap: outside the consent regions above, analytics
@@ -399,23 +442,25 @@
 <h2><span class="num">07</span><span>Legal bases for processing</span></h2>
 <p>Where the UK or EU GDPR applies:</p>
 <ul>
-  <li><strong>Consent</strong> (Art. 6(1)(a)) — personalised advertising and any use of the advertising identifier for it, and <em>analytics</em>, which is gated on the same consent message described in section 06 and is not collected without it.</li>
-  <li><strong>Contract</strong> (Art. 6(1)(b)) — delivering a purchase you have made.</li>
+  <li><strong>Consent</strong> (Art. 6(1)(a)) — personalised advertising and any use of the advertising identifier for it, and <em>Firebase gameplay analytics</em>, which is gated on the same consent message described in section 06 and is not collected without it.</li>
+  <li><strong>Contract</strong> (Art. 6(1)(b)) — delivering a purchase you have made and providing the Play Games achievements and rankings you use. Google describes the legal bases for its own processing in its privacy policy.</li>
   <li><strong>Legitimate interests</strong> (Art. 6(1)(f)) — serving non-personalised ads, capping how often ads appear, and preventing ad fraud.</li>
 </ul>
 
 <h2><span class="num">08</span><span>Retention and international transfers</span></h2>
 <p>
-  I hold no data that identifies you, and there is no account, name or email address
-  anywhere in this app to attach anything to.
+  Play Games data is associated with your gaming identity. Your device keeps the
+  player ID and local progress until the app's data is cleared or removed. Google
+  retains online achievements and scores under its own policies and deletion
+  controls; uninstalling the game does not remove that data from Google.
 </p>
 <p>
   The analytics events in section 03 sit in my Firebase project under a retention
   window set in the Firebase console — currently <strong>14 months</strong> for
   user-level data, after which Google deletes it automatically.
   Aggregate reports built from it may persist longer, in a form that describes
-  players in general and no player in particular. Everything else — ad serving data,
-  purchase records — is retained under Google's own schedules, described in its
+  players in general and no player in particular. Other Google-held data — ad serving data,
+  purchase records and Play Games data — is retained under Google's own schedules, described in its
   privacy policy.
 </p>
 <p>
@@ -435,8 +480,8 @@
   Depending on where you live, you may have rights to access, correct, delete or port
   your personal data, to object to or restrict processing, and to withdraw consent.
   Withdrawing consent is the one you can exercise yourself in seconds, from
-  <em>Settings → Ad Privacy Choices</em>, and it stops both advertising and analytics
-  collection.
+  <em>Settings → Ad Privacy Choices</em>, with the effects on ads and Firebase gameplay analytics described in section 06. Play Games has separate account, visibility
+  and deletion controls; Ad Privacy Choices does not disconnect it.
 </p>
 <p>
   For the rest: most of the data described here is held by Google rather than by me,
@@ -470,8 +515,8 @@
 <p>
   If this policy changes, the date at the top of the page changes with it. Material
   changes — a new third party, or a new category of data — will be noted in the app's
-  release notes as well. Continuing to use the game after a change means you accept
-  the updated policy.
+  release notes as well. This policy describes how data is handled; it does not
+  replace any consent Google or the game requests.
 </p>
 
 <h2><span class="num">12</span><span>Contact</span></h2>
