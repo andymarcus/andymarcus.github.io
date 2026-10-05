@@ -149,7 +149,7 @@
   <p class="eyebrow">Protocol<span class="sep">//</span>RUN</p>
   <h1>Privacy <span class="glow">Policy</span></h1>
   <p class="meta">
-    Effective <strong>21 August 2026</strong> &nbsp;·&nbsp; Last updated <strong>10 September 2026</strong><br>
+    Effective <strong>21 August 2026</strong> &nbsp;·&nbsp; Last updated <strong>5 October 2026</strong><br>
     Applies to the <strong>Protocol:RUN</strong> Android application (<code>com.protocolrun.game</code>)
   </p>
 </header>
@@ -164,9 +164,9 @@
     a separate account or game server.
   </p>
   <p>
-    Google's advertising and analytics components do collect data. The game shows ads through
-    <strong>Google AdMob</strong>, which uses device and advertising identifiers to
-    serve and measure them; and it sends gameplay measurements under an app instance ID to
+    The advertising and analytics components do collect data. The game shows ads through
+    <strong>Unity LevelPlay</strong> (with Unity Ads), which uses device and advertising
+    identifiers to serve and measure them; and it sends gameplay measurements under an app instance ID to
     <strong>Google Firebase Analytics</strong> — how far runs go, which ads are
     offered and declined, what gets bought — so I can tell whether the game is any
     good and whether the ads are too intrusive. No separate crash-reporting service is installed; Google Play Games collects SDK diagnostics.
@@ -222,21 +222,23 @@
 
 <h2><span class="num">03</span><span>What third parties collect</span></h2>
 <p>
-  The game includes Google's advertising, analytics, billing and Play Games
-  components. Google operates these services under its own policies. I receive
+  The game includes Unity's advertising components and Google's consent, analytics,
+  billing and Play Games components. Unity and Google operate these services under
+  their own policies. I receive
   analytics reports through Firebase. The game also receives player identities,
   achievement progress and leaderboard results from Play Games to display them
   and keep progress in sync.
 </p>
 
-<h3>Google AdMob — advertising</h3>
+<h3>Unity LevelPlay and Unity Ads — advertising</h3>
 <p>
   Protocol:RUN shows three kinds of ad: an in-run banner, <em>rewarded</em> ads you
   may choose to watch in exchange for continuing an Endless run or doubling the
   credits banked by an eligible Endless run or completed contract, and an occasional
   full-screen ad between runs. The guided tutorial is ad-free. Rewarded ads are always optional;
   declining one does not remove credits already earned.
-  To serve and measure these, the Google Mobile Ads SDK may collect and process:
+  To serve and measure these, the Unity LevelPlay SDK and the Unity Ads network it
+  requests ads from may collect and process:
 </p>
 <ul>
   <li>your device's <strong>advertising identifier</strong> (Android Advertising ID);</li>
@@ -247,14 +249,21 @@
 <p>
   This is used to select ads, limit how often you see the same one, measure
   performance, and detect invalid or fraudulent traffic. Read
-  <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Google's Privacy Policy</a>
-  and
-  <a href="https://support.google.com/admob/answer/6128543" rel="noopener" target="_blank">how Google uses data from apps that use its services</a>.
+  <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy" rel="noopener" target="_blank">Unity's privacy policy for game players and app users</a>.
+  The consent message described in section 06 is Google's, and Google's
+  <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Privacy Policy</a>
+  covers it.
+</p>
+<p>
+  Versions up to and including 1.5.0 requested ads through <strong>Google AdMob</strong>
+  instead, which processes the same kinds of data under
+  <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Google's Privacy Policy</a>.
+  Updating the game moves you to Unity's services.
 </p>
 
 <h3>Google Firebase Analytics — how the game is played</h3>
 <p>
-  AdMob and Google Play already tell me installs, sessions, revenue and retention
+  LevelPlay and Google Play already tell me installs, sessions, revenue and retention
   with no code at all. Firebase Analytics is in the game for the questions those
   reports structurally cannot answer: how many runs a player actually takes, what
   share of players never reach the distance at which ads switch on, and how often a
@@ -289,7 +298,7 @@
 <p>
   <strong>What it deliberately does not collect:</strong> no free-text of any kind, no
   contacts, no device identifiers beyond those above, no advertising ID (that is
-  AdMob's, described above, and analytics does not read it), and no attempt to link
+  the ad SDK's, described above, and analytics does not read it), and no attempt to link
   any of this to a real identity. The game sets no user ID and no user properties —
   every event is a counter and a set of numbers.
 </p>
@@ -384,13 +393,13 @@
   <tbody>
     <tr><td>INTERNET</td><td>Requesting ads, sending analytics events, connecting to Play Games, syncing achievements and scores, and loading rankings. Gameplay remains available offline.</td></tr>
     <tr><td>ACCESS_NETWORK_STATE</td><td>Checking whether a connection exists before requesting an ad.</td></tr>
-    <tr><td>AD_ID</td><td>Reading the advertising identifier, required by the ads SDK on Android 13 and above. Declared twice, in Google's namespace and Android's.</td></tr>
+    <tr><td>AD_ID</td><td>Reading the advertising identifier, required by the ads SDK on Android 13 and above.</td></tr>
     <tr><td>VIBRATE</td><td>Haptic feedback on near misses and impacts. Can be turned off in Settings.</td></tr>
     <tr><td>WAKE_LOCK</td><td>Keeping the screen awake during a run.</td></tr>
-    <tr><td>ACCESS_ADSERVICES_AD_ID, _ATTRIBUTION, _TOPICS</td><td>Added by Google's ads SDK for Android's Privacy Sandbox advertising APIs.</td></tr>
+    <tr><td>ACCESS_ADSERVICES_AD_ID, _ATTRIBUTION, _TOPICS</td><td>Added by the ads SDKs for Android's Privacy Sandbox advertising APIs.</td></tr>
     <tr><td>BILLING</td><td>Offering the Supporter unlock through Google Play.</td></tr>
     <tr><td>BIND_GET_INSTALL_REFERRER_SERVICE</td><td>Added by Firebase Analytics. Lets Google attribute an install to the listing or campaign it came from.</td></tr>
-    <tr><td>READ_BASIC_PHONE_STATE, FOREGROUND_SERVICE</td><td>Added by Google Play Services components; not used by the game directly.</td></tr>
+    <tr><td>RECEIVE_BOOT_COMPLETED, FOREGROUND_SERVICE</td><td>Added by the ads SDK and Google Play Services components; not used by the game directly.</td></tr>
   </tbody>
 </table>
 </div>
@@ -413,7 +422,7 @@
 </p>
 <p>
   <strong>That one answer governs analytics too.</strong> The game reads your consent
-  in exactly one place and hands the same result to both Google components, so
+  in exactly one place and hands the same result to both the ads and the analytics, so
   refusing leaves analytics collection switched off for the session as well. This is
   deliberate: a build where the ads believe you refused and the analytics believe you
   agreed is a build with a compliance problem, so there is only ever one answer to
