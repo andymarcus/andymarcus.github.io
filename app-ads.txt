@@ -160,3 +160,4 @@ loopme.com, 20775, RESELLER, 6c8d5f95897a5a3b
 loopme.com, 2896, RESELLER, 6c8d5f95897a5a3b
 loopme.com, 9621, RESELLER, 6c8d5f95897a5a3b
 odeeo.io, 118848844, RESELLER, 36cfd73091d5c3fc
+facebook.com, 4622717374640531, DIRECT, c3e20eee3f780d68
