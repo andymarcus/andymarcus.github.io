@@ -149,7 +149,7 @@
   <p class="eyebrow">Protocol<span class="sep">//</span>RUN</p>
   <h1>Privacy <span class="glow">Policy</span></h1>
   <p class="meta">
-    Effective <strong>21 August 2026</strong> &nbsp;·&nbsp; Last updated <strong>12 October 2026</strong><br>
+    Effective <strong>21 August 2026</strong> &nbsp;·&nbsp; Last updated <strong>13 October 2026</strong><br>
     Applies to the <strong>Protocol:RUN</strong> Android application (<code>com.protocolrun.game</code>)
   </p>
 </header>
@@ -224,8 +224,9 @@
 
 <h2><span class="num">03</span><span>What third parties collect</span></h2>
 <p>
-  The game includes Unity's and Google's advertising components and Google's consent,
-  analytics, billing and Play Games components. Unity and Google operate these services under
+  The game includes Unity's and Google's advertising components, Meta's advertising
+  component from version 1.5.3, and Google's consent, analytics, billing and Play Games
+  components. Unity, Google and Meta operate these services under
   their own policies. I receive
   analytics reports through Firebase. The game also receives player identities,
   achievement progress and leaderboard results from Play Games to display them
@@ -430,18 +431,22 @@
 <p>
   Before any personalised ad is requested, the game shows a Google-certified consent
   message using Google's User Messaging Platform. You may refuse personalised ads;
-  the game remains fully playable, and you will see non-personalised ads instead.
-  You can reopen that choice at any time from <em>Settings → Ad Privacy Choices</em>
+  the game remains fully playable. Non-personalised or limited ads may still be
+  available, depending on your choices and the network.
+  You can reopen that choice at any time from <em>Settings → Ad privacy</em>
   inside the game.
 </p>
 <p>
-  <strong>That one answer governs analytics too.</strong> The game reads your consent
-  in exactly one place and hands the same result to both the ads and the analytics, so
-  refusing leaves analytics collection switched off for the session as well. This is
-  deliberate: a build where the ads believe you refused and the analytics believe you
-  agreed is a build with a compliance problem, so there is only ever one answer to
-  disagree about. If the app cannot establish your consent status at all, both stay
-  off rather than defaulting on.
+  <strong>From version 1.5.3, analytics follows the analytics-storage choice in
+  Google's consent message.</strong> This is separate from permission to request an
+  ad. Refusing or withdrawing analytics storage switches Firebase gameplay analytics
+  collection off; gameplay events from that period are not stored for later sending.
+  Advertising storage, ad user data and ad personalisation also follow their own
+  choices. Missing or unconfigured analytics choices leave collection off.
+  Google interprets the message's device-storage choice (TCF Purpose 1) for analytics
+  storage. Section 03 describes how Google Analytics collects and processes the data.
+  Earlier releases used the message's overall ad-eligibility status to control
+  analytics; update to version 1.5.3 for the corrected purpose-specific handling.
 </p>
 <h3>On your device, anywhere</h3>
 <ul>
@@ -450,16 +455,23 @@
   <li><strong>Reset the analytics app instance ID</strong> by clearing the app's data (Android <em>Settings → Apps → Protocol:RUN → Storage → Clear data</em>), which also clears your saved game. A new identifier is generated and nothing links it to the old one.</li>
   <li><strong>Remove banners and between-runs ads</strong> by buying the Supporter unlock. Rewarded ads remain available because they are always your choice to start.</li>
   <li><strong>Delete local game data</strong> by clearing the app's storage or uninstalling. This does not delete achievements or scores already held by Google Play Games.</li>
-  <li><strong>Manage Play Games</strong> through Google's Play Games settings, including the account used for this game, automatic sign-in and profile visibility. Ad Privacy Choices does not control Play Games.</li>
+  <li><strong>Manage Play Games</strong> through Google's Play Games settings, including the account used for this game, automatic sign-in and profile visibility. Ad privacy does not control Play Games.</li>
   <li><strong>Delete Play Games data</strong> using <a href="https://support.google.com/googleplay/answer/9130646" rel="noopener" target="_blank">Google's instructions for deleting data for an individual game or your Play Games profile</a>. Local progress is separate and may be submitted again if you reconnect; clear local game data as well if you want to remove both copies. Clearing local data also removes your other saved progress.</li>
 </ul>
 <p>
-  Being straight about the gap: outside the consent regions above, analytics
-  collection is on by default and the game has no in-app switch to turn it off. The
-  device-level controls in this section stop ad personalisation and reset the
-  identifiers, but they do not stop the gameplay events in section 03 being sent. If
-  you would rather they were not, write to me — that is a fair thing to ask for and
-  the reason it is stated here rather than left to be discovered.
+  Outside regions where consent is required, version 1.5.3 may enable gameplay
+  analytics when Google's consent system explicitly reports that analytics consent
+  does not apply. Unknown or unconfigured choices leave it off. The game has no
+  separate global analytics switch. Device advertising-ID controls do not by
+  themselves stop gameplay analytics.
+</p>
+<h3>US privacy choices</h3>
+<p>
+  Where Google's US privacy message is available, open <em>Settings → Ad privacy</em>
+  to review your choices. From version 1.5.3, the game forwards applicable sale,
+  sharing and targeted-advertising opt-outs to LevelPlay and requests Meta's Limited
+  Data Use processing where applicable. Unknown US choices are treated restrictively.
+  Ads loaded under previous choices are discarded when you close the privacy form.
 </p>
 
 <h2><span class="num">07</span><span>Legal bases for processing</span></h2>
@@ -478,13 +490,19 @@
   controls; uninstalling the game does not remove that data from Google.
 </p>
 <p>
+  On the first launch of version 1.5.3, the game clears legacy analytics settings
+  and locally queued analytics events to remove incorrectly granted permissions
+  from earlier versions. This may reset the analytics app instance identifier.
+  It does not clear game progress, purchases or your stored privacy choices.
+</p>
+<p>
   The analytics events in section 03 sit in my Firebase project under a retention
   window set in the Firebase console — currently <strong>14 months</strong> for
   user-level data, after which Google deletes it automatically.
   Aggregate reports built from it may persist longer, in a form that describes
-  players in general and no player in particular. Other Google-held data — ad serving data,
-  purchase records and Play Games data — is retained under Google's own schedules, described in its
-  privacy policy.
+  players in general and no player in particular. Advertising data held by Unity, Google and Meta follows each provider's retention
+  schedules. Google-held purchase records and Play Games data follow Google's
+  schedules. See the provider policies linked in section 03.
 </p>
 <p>
   Because those events carry a randomly generated app instance ID and nothing else, I
@@ -493,9 +511,9 @@
   identifier immediately, and the retention window above disposes of what came before.
 </p>
 <p>
-  Google operates globally and may process data outside your country, including in
-  the United States, relying on transfer mechanisms such as the EU Standard
-  Contractual Clauses.
+  Unity, Google and Meta operate globally and may process data outside your country,
+  including in the United States. Their privacy policies describe the safeguards
+  and transfer mechanisms they use.
 </p>
 
 <h2><span class="num">09</span><span>Your rights</span></h2>
@@ -503,12 +521,12 @@
   Depending on where you live, you may have rights to access, correct, delete or port
   your personal data, to object to or restrict processing, and to withdraw consent.
   Withdrawing consent is the one you can exercise yourself in seconds, from
-  <em>Settings → Ad Privacy Choices</em>, with the effects on ads and Firebase gameplay analytics described in section 06. Play Games has separate account, visibility
-  and deletion controls; Ad Privacy Choices does not disconnect it.
+  <em>Settings → Ad privacy</em>, with the effects on ads and Firebase gameplay analytics described in section 06. Play Games has separate account, visibility
+  and deletion controls; Ad privacy does not disconnect it.
 </p>
 <p>
-  For the rest: most of the data described here is held by Google rather than by me,
-  so requests are usually best made to Google directly. The analytics data in my own
+  For data held by Unity, Google or Meta, you can also use the rights and contact
+  channels in their privacy policies linked in section 03. The analytics data in my own
   Firebase project is pseudonymous, as section 08 explains, which limits what an
   access or deletion request can be matched to — but write to me and I will do what
   can be done and tell you plainly what cannot.
@@ -519,10 +537,10 @@
   <a href="https://ico.org.uk/" rel="noopener" target="_blank">Information Commissioner's Office</a>.
 </p>
 <p>
-  If you are a California resident: I do not sell or share personal information as
-  those terms are defined by the CCPA/CPRA. Ad personalisation may qualify as
-  "sharing" for cross-context behavioural advertising, which you can turn off using
-  the device controls in section 06.
+  Ad personalisation may constitute a sale or sharing of personal information under
+  applicable US privacy laws, including sharing for cross-context behavioural
+  advertising under California law. Use the US privacy choices described in section
+  06 to opt out where available; device advertising controls are also described there.
 </p>
 
 <h2><span class="num">10</span><span>Children</span></h2>
