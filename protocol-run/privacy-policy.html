@@ -149,7 +149,7 @@
   <p class="eyebrow">Protocol<span class="sep">//</span>RUN</p>
   <h1>Privacy <span class="glow">Policy</span></h1>
   <p class="meta">
-    Effective <strong>21 August 2026</strong> &nbsp;·&nbsp; Last updated <strong>6 October 2026</strong><br>
+    Effective <strong>21 August 2026</strong> &nbsp;·&nbsp; Last updated <strong>12 October 2026</strong><br>
     Applies to the <strong>Protocol:RUN</strong> Android application (<code>com.protocolrun.game</code>)
   </p>
 </header>
@@ -169,7 +169,9 @@
     uses device and advertising identifiers to serve and measure them; and it sends gameplay measurements under an app instance ID to
     <strong>Google Firebase Analytics</strong> — how far runs go, which ads are
     offered and declined, what gets bought — so I can tell whether the game is any
-    good and whether the ads are too intrusive. No separate crash-reporting service is installed; Google Play Games collects SDK diagnostics.
+    good and whether the ads are too intrusive. Builds that include Meta Audience Network
+    also use Meta as an advertising partner through LevelPlay, as described below.
+    No separate crash-reporting service is installed; Google Play Games collects SDK diagnostics.
   </p>
   <p>
     If you buy the Supporter unlock, Google Play handles the payment and I never see
@@ -258,6 +260,19 @@
 <p>
   Versions up to and including 1.5.0 requested ads from Google AdMob alone; version
   1.5.1 from Unity Ads alone. From 1.5.2 both bid through Unity LevelPlay.
+</p>
+<h3>Meta Audience Network — advertising in builds that include the Meta SDK</h3>
+<p>
+  Version 1.5.3 adds Meta Audience Network as another bidder
+  through Unity LevelPlay for the same banner, interstitial and optional rewarded
+  formats. Versions up to and including 1.5.2 do not include this integration.
+  Meta ad availability also depends on network approval and ad availability.
+  Meta receives information through its advertising SDK and processes it under
+  <a href="https://www.facebook.com/privacy/policy/" rel="noopener" target="_blank">the Meta Privacy Policy</a>.
+  This includes device identifiers, device and app information, approximate location
+  inferred from network information, and information about interactions with ads.
+  Meta's policy explains its use of information received from app developers
+  and other partners, including for advertising and measurement.
 </p>
 
 <h3>Google Firebase Analytics — how the game is played</h3>
