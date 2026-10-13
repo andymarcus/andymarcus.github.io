@@ -132,10 +132,12 @@
     The advertising and analytics components do collect data. The game shows optional
     rewarded ads and occasional ads between rooms through <strong>Unity LevelPlay</strong>,
     which requests them from Unity Ads and Google AdMob and uses device and advertising
-    identifiers to serve and measure them. With your consent, it sends a small set of
-    measurements to <strong>Google Firebase Analytics</strong> under a random app instance
-    ID: which optional ads are offered, watched or turned down, what ads earn, and which
-    purchases are completed. That's how I find out whether the ads are fair.
+    identifiers to serve and measure them. With your consent, it sends measurements to
+    <strong>Google Firebase Analytics</strong> under a random app instance ID: which rooms
+    are started, solved or failed and how, which chapters are opened and finished, hints
+    and skips, which optional ads are offered, watched or turned down, what ads earn, and
+    which purchases are completed. That's how I find out which rooms are too hard and
+    whether the ads are fair.
   </p>
   <p>
     If you buy Remove Ads, a Master Key or Unlimited Keys, Google Play handles the payment
@@ -174,9 +176,9 @@
   deletes them. <em>Reset Progress</em> in the game's settings also wipes your progress.
 </p>
 <p>
-  One distinction is worth stating plainly: the files stay on your phone, but a few
-  facts about ads and purchases are also sent as separate analytics events, described in
-  section 03. Those events carry no name, email or account identifier.
+  One distinction is worth stating plainly: the files stay on your phone, but some
+  of what they record (rooms solved, cogs earned, rooms skipped) is also sent as separate
+  analytics events when it happens, described in section 03. Those events carry no name, email or account identifier.
 </p>
 
 <h2><span class="num">03</span><span>What third parties collect</span></h2>
@@ -216,10 +218,11 @@
   <a href="https://support.google.com/admob/answer/6128543" rel="noopener" target="_blank">how Google uses data from apps that use its services</a>.
 </p>
 
-<h3>Google Firebase Analytics: are the ads fair?</h3>
+<h3>Google Firebase Analytics: how the game is played</h3>
 <p>
   Unity LevelPlay and Google Play already report installs, sessions and revenue without
-  any extra code. Firebase Analytics answers the question they can't: how often an
+  any extra code. Firebase Analytics answers the questions they can't: which rooms players
+  get stuck on or give up at, how far through the four chapters they get, and how often an
   optional ad is <em>offered and turned down</em>. An ad network only ever sees the offers
   that were accepted, and refusals are how I find out an offer is annoying rather than
   useful.
@@ -235,9 +238,12 @@
   <li>device and app information: model, operating system version, app version, language, network type;</li>
   <li><strong>approximate location inferred from your IP address</strong> (country or region level);</li>
   <li>
-    <strong>the game's own events</strong>: an optional ad being offered, watched or
-    turned down, and for which purpose (hint, key or skip); the format, network and
-    reported revenue of each ad shown; and which product was bought when a purchase completes;
+    <strong>the game's own events</strong>: a room being started and finished (its
+    number and chapter, whether the Courier delivered or how it failed, the pieces used,
+    the cogs earned and which attempt it was); a chapter being opened or completed; a hint
+    being used, a room skipped, or the keys running out; an optional ad being offered,
+    watched or turned down, and for which purpose (hint, key or skip); the format, network
+    and reported revenue of each ad shown; and which product was bought when a purchase completes;
   </li>
   <li>
     a few events Firebase records by itself, such as first launch, session start and
@@ -289,7 +295,7 @@
     <tr><td>App instance ID</td><td class="yes">Yes</td><td class="no">No</td><td>Counting one player's events as one player's; processed by Google Firebase on my behalf</td></tr>
     <tr><td>Device &amp; app info</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Ad serving and measurement; analytics</td></tr>
     <tr><td>Approximate location (from IP)</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Regional ad selection, analytics, legal compliance</td></tr>
-    <tr><td>App interactions: ads offered, watched or declined</td><td class="yes">Yes</td><td class="no">No</td><td>Measuring how intrusive the game's ads are</td></tr>
+    <tr><td>App interactions: rooms played, chapters, hints, skips, ads offered, watched or declined</td><td class="yes">Yes</td><td class="no">No</td><td>Finding rooms that are too hard; measuring how intrusive the game's ads are</td></tr>
     <tr><td>Purchase history</td><td class="yes">Yes</td><td class="no">No</td><td>Delivering what you bought; held by Google Play</td></tr>
     <tr><td>Name, email, phone, address</td><td class="no">No</td><td class="no">No</td><td>—</td></tr>
     <tr><td>Precise location</td><td class="no">No</td><td class="no">No</td><td>—</td></tr>
