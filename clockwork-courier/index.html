@@ -220,15 +220,6 @@
   .wings-shot img { border-radius: 16px; box-shadow: 0 30px 70px rgba(0,0,0,.55), 0 0 0 1px var(--rule); }
   @media (max-width: 860px) { .wings-grid { grid-template-columns: 1fr; } .wings-shot { max-width: 520px; margin: 0 auto; } }
 
-  /* ---------------------------------------------------------------- fair -- */
-  .fair { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
-  .fair div { border: 1px solid var(--rule); border-radius: 14px; padding: 24px; background: var(--bg-2); }
-  .fair h3 { font-family: var(--display); font-weight: 700; font-size: 1.1rem; margin: 0 0 10px; color: var(--paper); }
-  .fair ul { margin: 0; padding-left: 1.2em; color: var(--dim); font-size: 15.5px; }
-  .fair li { margin-bottom: 6px; }
-  .fair li::marker { color: var(--brass); }
-  @media (max-width: 760px) { .fair { grid-template-columns: 1fr; } }
-
   /* -------------------------------------------------------------- final -- */
   .final { text-align: center; position: relative; overflow: hidden; }
   .final::before { content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -454,34 +445,6 @@
       </div>
       <div class="wings-shot">
         <img loading="lazy" src="img/wings.webp" width="1080" height="1260" alt="Four rooms side by side, one from each wing: the Workshop, the Archives, Botanical Mechanism and Hydro-Vaults.">
-      </div>
-    </div>
-  </section>
-
-  <section aria-labelledby="fair-title">
-    <div class="wrap">
-      <p class="eyebrow">Free to play, fairly</p>
-      <h2 id="fair-title">Ads never <span class="gilt">interrupt a puzzle</span></h2>
-      <p class="lede">Clockwork Courier is free to download and play from start to finish. Ads and purchases sit around the puzzles, never inside them.</p>
-      <div class="fair">
-        <div>
-          <h3>Wind-up keys</h3>
-          <ul>
-            <li>A failed run uses a key; a successful one never does.</li>
-            <li>Hold up to 10, with one more wound every 10 minutes.</li>
-            <li>The first 10 rooms are free to fail as often as you like.</li>
-            <li>Planning is always free, even with no keys left.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Ads you choose</h3>
-          <ul>
-            <li>Watch an optional ad for a hint, a spare key or to skip a room that has you stuck.</li>
-            <li>An occasional ad between rooms, never during the first 10 and at most once every three.</li>
-            <li>No banners, and never an ad mid-run.</li>
-            <li>Remove Ads, a 24-hour Master Key and Unlimited Keys are optional purchases.</li>
-          </ul>
-        </div>
       </div>
     </div>
   </section>
