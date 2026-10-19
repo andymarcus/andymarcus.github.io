@@ -86,6 +86,7 @@
 
   .tw { overflow-x: auto; margin: 20px 0 26px; border: 1px solid var(--rule); border-radius: 8px; }
   table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 520px; }
+  table.wide { min-width: 760px; }
   thead th { text-align: left; background: var(--panel); color: var(--brass-hi); font-family: var(--type); font-weight: 400;
              font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase; padding: 11px 14px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
   tbody td { padding: 11px 14px; border-bottom: 1px solid rgba(42,47,74,.6); vertical-align: top; color: var(--dim); }
@@ -115,7 +116,7 @@
   <p class="eyebrow">Clockwork Courier</p>
   <h1>Privacy Policy</h1>
   <p class="meta">
-    Effective <strong>13 October 2026</strong> &nbsp;·&nbsp; Last updated <strong>13 October 2026</strong><br>
+    Effective <strong>13 October 2026</strong> &nbsp;·&nbsp; Last updated <strong>20 October 2026</strong><br>
     Applies to the <strong>Clockwork Courier</strong> Android application (<code>com.clockworkcourier.game</code>)
   </p>
 </header>
@@ -131,7 +132,7 @@
   <p>
     The advertising and analytics components do collect data. The game shows optional
     rewarded ads and occasional ads between rooms through <strong>Unity LevelPlay</strong>,
-    which requests them from Unity Ads and Google AdMob and uses device and advertising
+    which requests them from ironSource Ads, Unity Ads and Google AdMob and uses device and advertising
     identifiers to serve and measure them. With your consent, it sends measurements to
     <strong>Google Firebase Analytics</strong> under a random app instance ID: which rooms
     are started, solved or failed and how, which chapters are opened and finished, hints
@@ -189,7 +190,7 @@
   Unity LevelPlay.
 </p>
 
-<h3>Unity LevelPlay, Unity Ads and Google AdMob: advertising</h3>
+<h3>Unity LevelPlay, ironSource Ads, Unity Ads and Google AdMob: advertising</h3>
 <p>
   Clockwork Courier shows two kinds of ad:
 </p>
@@ -200,7 +201,8 @@
 <p>The game shows no banner ads.</p>
 <p>
   To serve and measure these, the Unity LevelPlay SDK and the ad networks it requests ads
-  from (Unity Ads and Google AdMob, which bid for each ad) may collect and process:
+  from (ironSource Ads, Unity Ads and Google AdMob, which bid for each ad) may collect and
+  process:
 </p>
 <ul>
   <li>your device's <strong>advertising identifier</strong> (Android Advertising ID);</li>
@@ -210,7 +212,8 @@
 </ul>
 <p>
   This is used to choose ads, limit how often you see the same one, measure performance,
-  and detect invalid or fraudulent traffic. See
+  and detect invalid or fraudulent traffic. ironSource Ads and Unity Ads are both
+  operated by Unity. See
   <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy" rel="noopener" target="_blank">Unity's privacy policy for game players and app users</a>,
   and, for AdMob and the consent message described in section 06,
   <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Google's Privacy Policy</a>
@@ -367,9 +370,16 @@
 <h3>US privacy choices</h3>
 <p>
   Ad personalisation may count as a "sale" or "sharing" of personal information, or as
-  targeted advertising, under some US state privacy laws. Where Google's US state privacy
-  message is shown, your choice is available from <em>Settings → Privacy Options</em>.
-  The device advertising controls above work everywhere.
+  targeted advertising, under some US state privacy laws. In the states where those laws
+  apply, Google's consent tool shows a US privacy message, and you can opt out there or
+  later from <em>Settings → Privacy Options</em>.
+</p>
+<p>
+  From version 1.0.4, the game passes an opt-out of sale, sharing or targeted advertising
+  to Unity LevelPlay before any ad is requested, and LevelPlay passes it on to the ad
+  networks it uses. If the game can't read a US choice, it treats it as an opt-out. When
+  you change your choice, ads already loaded under the old one are discarded. The device
+  advertising controls above work everywhere. Section 09 describes your other US rights.
 </p>
 
 <h2><span class="num">07</span><span>Legal bases for processing</span></h2>
@@ -418,6 +428,55 @@
   If you are in the EEA or UK you may also complain to your national data protection
   authority. In the UK that is the
   <a href="https://ico.org.uk/" rel="noopener" target="_blank">Information Commissioner's Office</a>.
+</p>
+
+<h3>If you live in the United States</h3>
+<p>
+  This part is the notice that California and other US state privacy laws ask for. In
+  the last 12 months the game has collected these categories of personal information,
+  all from your device and the game itself:
+</p>
+<div class="tw">
+<table class="wide">
+  <thead><tr><th>Category</th><th>What it covers here</th><th>Who receives it</th><th>Sold or shared?</th></tr></thead>
+  <tbody>
+    <tr><td>Identifiers</td><td>Android advertising ID; Firebase app instance ID</td><td>Advertising ID: Unity (LevelPlay, ironSource Ads, Unity Ads) and Google (AdMob). App instance ID: Google (Firebase), on my behalf</td><td>Advertising ID: may be, for targeted advertising. App instance ID: no</td></tr>
+    <tr><td>Internet or other electronic network activity</td><td>Interactions with ads; the gameplay events in section 03</td><td>Ad interactions: the ad networks above. Gameplay events: Google (Firebase), on my behalf</td><td>Ad interactions: may be. Gameplay events: no</td></tr>
+    <tr><td>Device information</td><td>Model, operating system and app version, language, network type</td><td>The ad networks above; Google (Firebase)</td><td>May be, with ads</td></tr>
+    <tr><td>Geolocation</td><td>Approximate only, inferred from your IP address</td><td>The ad networks above; Google (Firebase)</td><td>May be, with ads</td></tr>
+    <tr><td>Commercial information</td><td>Which in-app products you bought</td><td>Google Play (which handles payment); Google (Firebase), on my behalf</td><td>No</td></tr>
+  </tbody>
+</table>
+</div>
+<p>
+  "Sold or shared" means made available to ad networks so they can personalise ads, which
+  some US laws treat as a sale, as sharing for cross-context behavioural advertising, or
+  as targeted advertising. Apart from that, I don't sell or share personal information.
+  I don't collect sensitive personal information, and I
+  don't knowingly sell or share the personal information of anyone under 16. How long
+  each category is kept is in section 08.
+</p>
+<p>
+  Depending on your state, you have the right to:
+</p>
+<ul>
+  <li><strong>opt out</strong> of the sale or sharing of your personal information and of targeted advertising, from <em>Settings → Privacy Options</em> (section 06) or by writing to me;</li>
+  <li><strong>know and access</strong> the personal information collected about you, and get a portable copy;</li>
+  <li><strong>correct</strong> it, and <strong>delete</strong> it;</li>
+  <li><strong>not be treated differently</strong> for using any of these rights. The game plays exactly the same either way.</li>
+</ul>
+<p>
+  To make a request, email
+  <a href="mailto:clockworkcourier@andymarcus.com">clockworkcourier@andymarcus.com</a>.
+  An authorised agent may make one for you with your written permission. I'll answer
+  within 45 days. As section 08 explains, I hold nothing that names you, so for access,
+  correction or deletion I can usually only tell you what the game collects and how to
+  clear it yourself, and point you to Unity and Google for what they hold.
+</p>
+<p>
+  If I turn down your request, you can appeal by replying to my answer with the word
+  "Appeal". I'll reply within 45 days. If you're still not satisfied, you can contact
+  your state's Attorney General.
 </p>
 
 <h2><span class="num">10</span><span>Children</span></h2>
