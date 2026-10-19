@@ -125,9 +125,10 @@
   <span class="stamp">IN SHORT</span>
   <h2>The short version</h2>
   <p>
-    Clockwork Courier has no accounts, no sign-in and no game server. Your progress,
+    Clockwork Courier has no accounts of its own and no game server. Your progress,
     keys, settings and unlocked finishes are saved in a few small files on your phone and
-    never leave it.
+    never leave it. If you use <strong>Google Play Games</strong>, the achievements you earn
+    are also kept with your Play Games profile.
   </p>
   <p>
     The advertising and analytics components do collect data. The game shows optional
@@ -185,7 +186,7 @@
 <h2><span class="num">03</span><span>What third parties collect</span></h2>
 <p>
   The game includes Unity's and Google's advertising components, and Google's consent,
-  analytics and billing components. Unity and Google operate these services under their
+  analytics, billing and Play Games components. Unity and Google operate these services under their
   own policies. I receive analytics reports through Firebase and revenue reports from
   Unity LevelPlay.
 </p>
@@ -280,6 +281,27 @@
   asks Google Play what you own; it sends nothing to me.
 </p>
 
+<h3>Google Play Games Services: achievements</h3>
+<p>
+  The game has 16 achievements through Google Play Games. Play Games connects using your
+  Google gaming profile: it signs you in automatically if you've used Play Games before,
+  and otherwise asks once, on the first launch, and again only if you open
+  <em>Achievements</em> in Settings. When you're connected, the game sends Google your
+  achievement unlocks and progress counts, worked out from your saved progress, and
+  Google keeps them with your Play Games profile. Google may show your gamer name and
+  avatar on its own achievement and profile screens, and other players may see your
+  achievements according to your Play Games profile visibility settings.
+</p>
+<p>
+  There are no leaderboards. The game doesn't read your gamer name, email address,
+  contacts or friends list, and doesn't store your Play Games player ID. Google also
+  collects Play Games SDK analytics and diagnostics to maintain and improve the service;
+  this is separate from the game's Firebase analytics and its ad consent controls. See
+  <a href="https://developer.android.com/games/pgs/data-collection" rel="noopener" target="_blank">Google's Play Games data disclosure</a>
+  and <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Google's Privacy Policy</a>.
+  The game plays the same without a Play Games connection; only achievements need it.
+</p>
+
 <h3>Google Play Services</h3>
 <p>
   The game is distributed through Google Play and relies on Google Play Services on your
@@ -299,6 +321,7 @@
     <tr><td>Device &amp; app info</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Ad serving and measurement; analytics</td></tr>
     <tr><td>Approximate location (from IP)</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Regional ad selection, analytics, legal compliance</td></tr>
     <tr><td>App interactions: rooms played, chapters, hints, skips, ads offered, watched or declined</td><td class="yes">Yes</td><td class="no">No</td><td>Finding rooms that are too hard; measuring how intrusive the game's ads are</td></tr>
+    <tr><td>Play Games achievements and player ID</td><td class="yes">Yes</td><td class="no">No</td><td>Awarding achievements; held by Google with your Play Games profile</td></tr>
     <tr><td>Purchase history</td><td class="yes">Yes</td><td class="no">No</td><td>Delivering what you bought; held by Google Play</td></tr>
     <tr><td>Name, email, phone, address</td><td class="no">No</td><td class="no">No</td><td>—</td></tr>
     <tr><td>Precise location</td><td class="no">No</td><td class="no">No</td><td>—</td></tr>
@@ -317,7 +340,7 @@
 <table>
   <thead><tr><th>Permission</th><th>Why</th></tr></thead>
   <tbody>
-    <tr><td>INTERNET</td><td>Requesting ads, sending analytics events and talking to Google Play Billing. Every room plays offline.</td></tr>
+    <tr><td>INTERNET</td><td>Requesting ads, sending analytics events, talking to Google Play Billing and syncing achievements with Google Play Games. Every room plays offline.</td></tr>
     <tr><td>ACCESS_NETWORK_STATE</td><td>Checking whether a connection exists before requesting an ad.</td></tr>
     <tr><td>VIBRATE</td><td>Haptic feedback as you place pieces and during runs. Can be turned off in Settings.</td></tr>
     <tr><td>AD_ID</td><td>Reading the advertising identifier, required by the ads SDK on Android 13 and above.</td></tr>
@@ -365,7 +388,9 @@
   <li><strong>Reset your advertising ID</strong> in the same place, which disconnects future ad data from past ad data.</li>
   <li><strong>Reset the analytics app instance ID</strong> by clearing the app's data (Android <em>Settings → Apps → Clockwork Courier → Storage → Clear data</em>). This also clears your saved progress. A new identifier is generated and nothing links it to the old one.</li>
   <li><strong>Stop the ads between rooms</strong> by buying Remove Ads. Rewarded ads stay available because you always choose to start them.</li>
-  <li><strong>Delete your game data</strong> with <em>Reset Progress</em> in Settings, by clearing the app's storage, or by uninstalling.</li>
+  <li><strong>Delete your game data</strong> with <em>Reset Progress</em> in Settings, by clearing the app's storage, or by uninstalling. This doesn't delete achievements already held by Google Play Games.</li>
+  <li><strong>Manage Play Games</strong> in Google's Play Games settings: the account used for this game, automatic sign-in and profile visibility. Privacy Options doesn't control Play Games.</li>
+  <li><strong>Delete Play Games data</strong> using <a href="https://support.google.com/googleplay/answer/9130646" rel="noopener" target="_blank">Google's instructions for deleting data for a game or your Play Games profile</a>. Achievements are worked out from your saved progress, so they're sent again if you reconnect; reset your progress too if you want both gone.</li>
 </ul>
 <h3>US privacy choices</h3>
 <p>
@@ -386,7 +411,7 @@
 <p>Where the UK or EU GDPR applies:</p>
 <ul>
   <li><strong>Consent</strong> (Art. 6(1)(a)): personalised advertising and any use of the advertising identifier for it, and Firebase analytics, which is not collected without the consent described in section 06.</li>
-  <li><strong>Contract</strong> (Art. 6(1)(b)): delivering and restoring a purchase you have made.</li>
+  <li><strong>Contract</strong> (Art. 6(1)(b)): delivering and restoring a purchase you have made, and providing the Play Games achievements you choose to use.</li>
   <li><strong>Legitimate interests</strong> (Art. 6(1)(f)): serving non-personalised ads, capping how often ads appear, and preventing ad fraud.</li>
 </ul>
 
@@ -397,7 +422,7 @@
   automatically. Aggregate reports built from them may be kept longer, in a form that
   describes players in general and no player in particular. Advertising data held by Unity
   and Google follows each provider's own retention schedule. Purchase records held by
-  Google Play follow Google's schedule.
+  Google Play, and achievements held by Google Play Games, follow Google's schedules.
 </p>
 <p>
   Because those events carry a randomly generated app instance ID and nothing else, I can't
@@ -440,7 +465,7 @@
 <table class="wide">
   <thead><tr><th>Category</th><th>What it covers here</th><th>Who receives it</th><th>Sold or shared?</th></tr></thead>
   <tbody>
-    <tr><td>Identifiers</td><td>Android advertising ID; Firebase app instance ID</td><td>Advertising ID: Unity (LevelPlay, ironSource Ads, Unity Ads) and Google (AdMob). App instance ID: Google (Firebase), on my behalf</td><td>Advertising ID: may be, for targeted advertising. App instance ID: no</td></tr>
+    <tr><td>Identifiers</td><td>Android advertising ID; Firebase app instance ID; Play Games player ID</td><td>Advertising ID: Unity (LevelPlay, ironSource Ads, Unity Ads) and Google (AdMob). App instance ID: Google (Firebase), on my behalf. Player ID: Google (Play Games)</td><td>Advertising ID: may be, for targeted advertising. App instance ID and player ID: no</td></tr>
     <tr><td>Internet or other electronic network activity</td><td>Interactions with ads; the gameplay events in section 03</td><td>Ad interactions: the ad networks above. Gameplay events: Google (Firebase), on my behalf</td><td>Ad interactions: may be. Gameplay events: no</td></tr>
     <tr><td>Device information</td><td>Model, operating system and app version, language, network type</td><td>The ad networks above; Google (Firebase)</td><td>May be, with ads</td></tr>
     <tr><td>Geolocation</td><td>Approximate only, inferred from your IP address</td><td>The ad networks above; Google (Firebase)</td><td>May be, with ads</td></tr>
