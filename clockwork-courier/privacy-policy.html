@@ -116,7 +116,7 @@
   <p class="eyebrow">Clockwork Courier</p>
   <h1>Privacy Policy</h1>
   <p class="meta">
-    Effective <strong>13 October 2026</strong> &nbsp;·&nbsp; Last updated <strong>20 October 2026</strong><br>
+    Effective <strong>13 October 2026</strong> &nbsp;·&nbsp; Last updated <strong>9 November 2026</strong><br>
     Applies to the <strong>Clockwork Courier</strong> Android application (<code>com.clockworkcourier.game</code>)
   </p>
 </header>
@@ -139,7 +139,9 @@
     are started, solved or failed and how, which chapters are opened and finished, hints
     and skips, which optional ads are offered, watched or turned down, what ads earn, and
     which purchases are completed. That's how I find out which rooms are too hard and
-    whether the ads are fair.
+    whether the ads are fair. If the game crashes or freezes, <strong>Google Firebase
+    Crashlytics</strong> sends a crash report (what the game was doing, your phone's model
+    and Android version) so I can fix it.
   </p>
   <p>
     If you buy Remove Ads, a Master Key or Unlimited Keys, Google Play handles the payment
@@ -269,6 +271,33 @@
   <a href="https://support.google.com/firebase/answer/6318039" rel="noopener" target="_blank">the list of data Google Analytics for Firebase collects</a>.
 </p>
 
+<h3>Google Firebase Crashlytics: crash reports</h3>
+<p>
+  When the game crashes or stops responding, Crashlytics records a report and sends it the
+  next time the game opens. It is the only way I learn that the game fails on a particular
+  phone, so it runs from the first launch, including before the consent question in
+  section 06: the crash that stops the game from ever starting is the one I most need to see.
+  A report holds:
+</p>
+<ul>
+  <li>the crash itself: the stack trace (which part of the game's or the phone's code failed) and the time;</li>
+  <li>
+    device and app state: phone model and manufacturer, Android version, app version,
+    orientation, free memory and storage, whether the game was in the foreground;
+  </li>
+  <li>
+    a <strong>Crashlytics installation identifier</strong>: a random value created on your
+    device that groups reports from the same installation. It is not your advertising ID
+    and is not linked to any account; it is replaced if you reinstall or clear the app's data;
+  </li>
+  <li>where analytics is allowed (section 06), the last few analytics events before the crash, as context.</li>
+</ul>
+<p>
+  Crash reports are never used for advertising, and they hold nothing you typed, no
+  contacts and no location beyond what the IP address implies when the report is sent. Read
+  <a href="https://firebase.google.com/support/privacy" rel="noopener" target="_blank">Firebase's privacy and security documentation</a>.
+</p>
+
 <h3>Google Play Billing: purchases</h3>
 <p>
   The game offers three optional purchases: <strong>Remove Ads</strong> (stops the ads
@@ -322,6 +351,7 @@
     <tr><td>Approximate location (from IP)</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Regional ad selection, analytics, legal compliance</td></tr>
     <tr><td>App interactions: rooms played, chapters, hints, skips, ads offered, watched or declined</td><td class="yes">Yes</td><td class="no">No</td><td>Finding rooms that are too hard; measuring how intrusive the game's ads are</td></tr>
     <tr><td>Play Games achievements and player ID</td><td class="yes">Yes</td><td class="no">No</td><td>Awarding achievements; held by Google with your Play Games profile</td></tr>
+    <tr><td>Crash logs and diagnostics</td><td class="yes">Yes</td><td class="no">No</td><td>Finding and fixing crashes and freezes; processed by Google Firebase on my behalf</td></tr>
     <tr><td>Purchase history</td><td class="yes">Yes</td><td class="no">No</td><td>Delivering what you bought; held by Google Play</td></tr>
     <tr><td>Name, email, phone, address</td><td class="no">No</td><td class="no">No</td><td>—</td></tr>
     <tr><td>Precise location</td><td class="no">No</td><td class="no">No</td><td>—</td></tr>
@@ -412,14 +442,15 @@
 <ul>
   <li><strong>Consent</strong> (Art. 6(1)(a)): personalised advertising and any use of the advertising identifier for it, and Firebase analytics, which is not collected without the consent described in section 06.</li>
   <li><strong>Contract</strong> (Art. 6(1)(b)): delivering and restoring a purchase you have made, and providing the Play Games achievements you choose to use.</li>
-  <li><strong>Legitimate interests</strong> (Art. 6(1)(f)): serving non-personalised ads, capping how often ads appear, and preventing ad fraud.</li>
+  <li><strong>Legitimate interests</strong> (Art. 6(1)(f)): serving non-personalised ads, capping how often ads appear, preventing ad fraud, and crash reports, which keep the game working on your phone and carry nothing used for advertising.</li>
 </ul>
 
 <h2><span class="num">08</span><span>Retention and international transfers</span></h2>
 <p>
   The analytics events in section 03 are kept in my Firebase project for
   <strong>14 months</strong> of user-level data, after which Google deletes them
-  automatically. Aggregate reports built from them may be kept longer, in a form that
+  automatically. Crash reports are kept by Crashlytics for <strong>90 days</strong>.
+  Aggregate reports built from them may be kept longer, in a form that
   describes players in general and no player in particular. Advertising data held by Unity
   and Google follows each provider's own retention schedule. Purchase records held by
   Google Play, and achievements held by Google Play Games, follow Google's schedules.
@@ -465,7 +496,7 @@
 <table class="wide">
   <thead><tr><th>Category</th><th>What it covers here</th><th>Who receives it</th><th>Sold or shared?</th></tr></thead>
   <tbody>
-    <tr><td>Identifiers</td><td>Android advertising ID; Firebase app instance ID; Play Games player ID</td><td>Advertising ID: Unity (LevelPlay, ironSource Ads, Unity Ads) and Google (AdMob). App instance ID: Google (Firebase), on my behalf. Player ID: Google (Play Games)</td><td>Advertising ID: may be, for targeted advertising. App instance ID and player ID: no</td></tr>
+    <tr><td>Identifiers</td><td>Android advertising ID; Firebase app instance ID; Crashlytics installation ID; Play Games player ID</td><td>Advertising ID: Unity (LevelPlay, ironSource Ads, Unity Ads) and Google (AdMob). App instance and Crashlytics IDs: Google (Firebase), on my behalf. Player ID: Google (Play Games)</td><td>Advertising ID: may be, for targeted advertising. App instance, Crashlytics and player IDs: no</td></tr>
     <tr><td>Internet or other electronic network activity</td><td>Interactions with ads; the gameplay events in section 03</td><td>Ad interactions: the ad networks above. Gameplay events: Google (Firebase), on my behalf</td><td>Ad interactions: may be. Gameplay events: no</td></tr>
     <tr><td>Device information</td><td>Model, operating system and app version, language, network type</td><td>The ad networks above; Google (Firebase)</td><td>May be, with ads</td></tr>
     <tr><td>Geolocation</td><td>Approximate only, inferred from your IP address</td><td>The ad networks above; Google (Firebase)</td><td>May be, with ads</td></tr>
